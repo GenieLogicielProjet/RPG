@@ -11,8 +11,6 @@ public class ReadTextFiles {
 	private int lines=(-1);
 	private int [][] tab;
 	private int tampon;
-	private int x;
-	private int y;
 	
 	public ReadTextFiles(String file) { 
 		try {
@@ -69,35 +67,33 @@ public class ReadTextFiles {
 			   System.out.println("Line not found");
 		}
 	}
-	public void position(int a,int b){
-		tampon = tab[a][b];
-		tab[a][b] = 15;
-		x=a;
-		y=b;
+	public void position(Personnage P1){
+		tampon = tab[P1.getX()][P1.getY()];
+		tab[P1.getX()][P1.getY()] = 15;
 	}
-	public void haut(){
-		tab[x][y]=tampon;
-		tampon=tab[x-1][y];
-		tab[x-1][y]=15;
-		x=x-1;
+	public void haut(Personnage P1){
+		tab[P1.getX()][P1.getY()]=tampon;
+		tampon=tab[P1.getX()-1][P1.getY()];
+		tab[P1.getX()-1][P1.getY()]=15;
+		P1.setX(P1.getX()-1);
 	}
-	public void gauche(){
-		tab[x][y]=tampon;
-		tampon=tab[x][y-1];
-		tab[x][y-1]=15;
-		y=y-1;
+	public void gauche(Personnage P1){
+		tab[P1.getX()][P1.getY()]=tampon;
+		tampon=tab[P1.getX()][P1.getY()-1];
+		tab[P1.getX()][P1.getY()-1]=15;
+		P1.setY(P1.getY()-1);
 	}
-	public void droite(){
-		tab[x][y]=tampon;
-		tampon=tab[x][y+1];
-		tab[x][y+1]=15;
-		y=y+1;
+	public void droite(Personnage P1){
+		tab[P1.getX()][P1.getY()]=tampon;
+		tampon=tab[P1.getX()][P1.getY()+1];
+		tab[P1.getX()][P1.getY()+1]=15;
+		P1.setY(P1.getY()+1);
 	}
-	public void bas(){
-		tab[x][y]=tampon;
-		tampon=tab[x+1][y];
-		tab[x+1][y]=15;
-		x=x+1;
+	public void bas(Personnage P1){
+		tab[P1.getX()][P1.getY()]=tampon;
+		tampon=tab[P1.getX()+1][P1.getY()];
+		tab[P1.getX()+1][P1.getY()]=15;
+		P1.setX(P1.getX()+1);
 	}
 	public void print() {
 		System.out.println(tab[0][0]);
