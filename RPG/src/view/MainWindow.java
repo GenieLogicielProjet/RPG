@@ -55,7 +55,7 @@ public class MainWindow extends JFrame implements ActionListener{
 		BorderLayout leLayout = new BorderLayout();
 		this.setLayout(leLayout);
 		
-		Image theBackground = new ImageIcon("Donjon.png").getImage();
+		Image theBackground = new ImageIcon("image/Donjon.png").getImage();
 		Background newBackground = new Background(theBackground);
 		newBackground.add(menu);
 		this.setContentPane(newBackground);
