@@ -11,6 +11,6 @@ public class MiniMap extends JPanel{
 
 	public MiniMap() {
 		this.setBackground(Color.MAGENTA);
-		this.setPreferredSize(new Dimension(200,200));
+		this.setPreferredSize(new Dimension(300,280));
 	}
 }

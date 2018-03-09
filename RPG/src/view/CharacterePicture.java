@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 public class CharacterePicture extends JPanel{
 	public CharacterePicture() {
 		    this.setBackground(Color.BLACK);
-		    this.setPreferredSize(new Dimension(100,150));
+		    this.setPreferredSize(new Dimension(110,110));
 		    // pour un fond d'écran je suis en manque d'idée
 			/*BorderLayout leLayout = new BorderLayout();
 			this.setLayout(leLayout);

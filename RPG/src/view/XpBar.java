@@ -9,7 +9,7 @@ import javax.swing.Box;
 
 public class XpBar extends JPanel{
 	public XpBar() {
-		 this.setBackground(Color.GRAY);
+		 this.setBackground(Color.magenta);
 	}
 	
 }

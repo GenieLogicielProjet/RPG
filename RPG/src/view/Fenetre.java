@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
 public class Fenetre extends JFrame{
 	public Fenetre(){
 		this.setTitle("RPG");
-		this.setSize(1000,650);
+		this.setSize(1280,960);
 		this.setBackground(Color.darkGray);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
@@ -23,8 +23,13 @@ public class Fenetre extends JFrame{
 				GameView gameView = new GameView();
 				left.add(gameView);
 			    left.add(Box.createVerticalStrut(25));
-			    AbilitiesView abilitiesView = new AbilitiesView();
-			    left.add(abilitiesView);
+			    Box container1 = Box.createHorizontalBox();
+			    	AbilitiesView abilitiesView = new AbilitiesView();
+			    	container1.add(abilitiesView);
+			    	container1.add(Box.createHorizontalStrut(15));
+			    	GoldView goldView = new GoldView();
+			    	container1.add(goldView);
+			    left.add(container1);
 			    left.add(Box.createVerticalStrut(25));
 		    
 		    
@@ -32,23 +37,27 @@ public class Fenetre extends JFrame{
 		    Box right = Box.createVerticalBox();
 			    right.add(Box.createVerticalStrut(25));
 			    Box container = Box.createHorizontalBox();
-				    container.add(Box.createHorizontalStrut(25));
+				    XpBar xpBar = new XpBar();
+					 container.add(xpBar);
+					 container.add(Box.createHorizontalStrut(15));
 					CharacterePicture characterePicture = new CharacterePicture();
 					container.add(characterePicture);
 					container.add(Box.createHorizontalStrut(25));
+					 StatView statView = new StatView();
+					 container.add(statView);
 			    right.add(container);
 			    right.add(Box.createVerticalStrut(40));
 			    HpBar hpBar = new HpBar();
 			    right.add(hpBar);
 			    right.add(Box.createVerticalStrut(25));
 			    ManaBar manaBar = new ManaBar();
-			    right.add(manaBar );
-			    right.add(Box.createVerticalStrut(25));
-			    XpBar xpBar = new XpBar();
-			    right.add(xpBar );
-			    right.add(Box.createVerticalStrut(80));
+			    right.add(manaBar);
+			    right.add(Box.createVerticalStrut(60));
 				MiniMap miniMap = new MiniMap();
 			    right.add(miniMap);
+			    right.add(Box.createVerticalStrut(50));
+			    InventoryView inventoryView = new InventoryView();
+			    right.add(inventoryView);
 			    right.add(Box.createVerticalStrut(25));
 		    
 		    

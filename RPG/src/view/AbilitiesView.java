@@ -11,7 +11,7 @@ public class AbilitiesView extends JPanel{
 	public AbilitiesView() {
 		// TODO Auto-generated constructor stub
 		this.setBackground(Color.GREEN);
-		this.setPreferredSize(new Dimension(60,150));
+		this.setPreferredSize(new Dimension(600,100));
 	}
 
 }
