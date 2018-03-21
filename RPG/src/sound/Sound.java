@@ -8,6 +8,7 @@ import javax.swing.*;
 
 // To play sound using Clip, the process need to be alive.
 // Hence, we use a Swing application.
+//In InterfaceTest add "new Sound();"
 public class Sound {
    
    // Constructor
