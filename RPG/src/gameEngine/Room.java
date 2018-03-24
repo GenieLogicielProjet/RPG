@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.awt.color.*;
+import java.awt.Graphics;
 
 abstract class Room {
 	
@@ -59,6 +61,7 @@ abstract class Room {
 			roomLayout[1+randomNumber.nextInt(11)][14] = 3;
 	}
 	
+	// Debugging : )rint the layout of a room
 	public void printLayout() {
 		for(int i = 0; i < 16; i++)
 		{
