@@ -24,7 +24,7 @@ public class Map{
 	// Returns the content of a cell
 	public int getContent(int floor, int room, int x, int y)
 	{
-		return floors[floor].rooms[room].roomLayout[x][y];
+		return floors[floor].rooms[room].roomLayout[x][y].type;
 	}
 	
 	// Debugging : print each floor separated by a line
