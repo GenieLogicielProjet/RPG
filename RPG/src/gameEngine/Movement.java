@@ -54,7 +54,7 @@ public class Movement /*extends Thread*/{
 	
 	public void update()
 	{
-		System.out.println(this.name);
+		System.out.println("a" + this.name);
 		player.setRoomInsidePositionX(player.getRoomInsidePositionX() + xMove);
 		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);
 	}
