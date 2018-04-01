@@ -61,9 +61,7 @@ public class Game extends Thread implements KeyListener{
 		// Game keeps running until the user quits
 		while(!quit)
 		{
-			// now = System.nanoTime();
 			this.run();
-			// then = System.nanoTime();
 		}
 		System.exit(0);
 	}
@@ -71,7 +69,6 @@ public class Game extends Thread implements KeyListener{
 		displayer.removeAll();
 		displayer.revalidate();
 		displayer.repaint();
-		// System.out.println("frame refreshed");
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -104,7 +101,7 @@ public class Game extends Thread implements KeyListener{
 				// Check if the movement is possible
 				if(moves[0].testMovement()) {
 					now = System.nanoTime();
-					// Start a timer to wait 300ms before moving again
+					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
 					if(now - lastCall >= 200000000)
 					{
@@ -125,7 +122,7 @@ public class Game extends Thread implements KeyListener{
 				
 				if(moves[1].testMovement()) {
 					now = System.nanoTime();
-					// Start a timer to wait 300ms before moving again
+					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
 					if(now - lastCall >= 200000000)
 					{
@@ -145,7 +142,7 @@ public class Game extends Thread implements KeyListener{
 				moves[3].setActive(false);
 				if(moves[2].testMovement()) {
 					now = System.nanoTime();
-					// Start a timer to wait 300ms before moving again
+					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
 					if(now - lastCall >= 200000000)
 					{
@@ -165,7 +162,7 @@ public class Game extends Thread implements KeyListener{
 				moves[2].setActive(false);
 				if(moves[3].testMovement()) {
 					now = System.nanoTime();
-					// Start a timer to wait 300ms before moving again
+					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
 					if(now - lastCall >= 200000000)
 					{
@@ -176,6 +173,9 @@ public class Game extends Thread implements KeyListener{
 					else
 						now = System.nanoTime();
 				}
+				break;
+			case KeyEvent.VK_ESCAPE :
+				quit = true;
 			}
 			
 			// Count the number of buttons being pressed
@@ -201,7 +201,6 @@ public class Game extends Thread implements KeyListener{
 			moves[3].setActive(false);
 			break;
 		}
-		System.out.println("NOSM = " );
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
