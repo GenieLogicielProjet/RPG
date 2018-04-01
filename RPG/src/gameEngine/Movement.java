@@ -71,10 +71,12 @@ public class Movement /*extends Thread*/{
 			}
 			if(cellType == 3)
 			{
+				player.setRoomPosition(player.getRoomPosition() - 1);
 				return false;
 			}
 			if(cellType == 4)
 			{
+				player.setRoomPosition(player.getRoomPosition() + 1);
 				return false;
 			}
 			if(cellType == 5) 
