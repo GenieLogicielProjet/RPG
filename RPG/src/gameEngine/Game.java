@@ -13,9 +13,6 @@ import java.awt.event.KeyEvent;
 public class Game extends Thread implements KeyListener{
 	public long now;
 	public long then;
-	public long frameTime;
-	public long frameRate;
-	private TimeCounter timer;
 	
 	// Both of these should only be initialized once (see : Singleton Pattern)
 	public Map map = new Map();
@@ -27,8 +24,11 @@ public class Game extends Thread implements KeyListener{
 	// Array of the 4 different moves
 	private Movement[] moves = new Movement[4];
 	
+	// Utility variables
 	private boolean quit = false;
 	private int numberOfSimultaneousMoves = 0;
+	private long lastCall = 0;
+	private boolean keyPressValid;
 	
 	public Game() {		
 		// Window of the whole Game (including HUD and Playable part)
@@ -61,7 +61,9 @@ public class Game extends Thread implements KeyListener{
 		// Game keeps running until the user quits
 		while(!quit)
 		{
+			// now = System.nanoTime();
 			this.run();
+			// then = System.nanoTime();
 		}
 		System.exit(0);
 	}
@@ -74,13 +76,24 @@ public class Game extends Thread implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// Handles only the latest move
-		//if(numberOfSimultaneousMoves <= 1)
-		//{
+		
+		/*if(System.nanoTime() - lastCall > 200000000) {
+			lastCall = System.nanoTime();
+			keyPressValid = true;
+		}
+		else {
+			keyPressValid = false;
+		}
+		System.out.println("lastCall: " + lastCall);
+		System.out.println("Valid: " + keyPressValid);
+		*/
+		
+		if(numberOfSimultaneousMoves <= 1)
+		{
+			numberOfSimultaneousMoves = 0;
 			switch(e.getKeyCode()) 
 			{
 			case KeyEvent.VK_Q:
-			//	int nbLoops;
-				System.out.println(moves[0].getName());
 				moves[0].setActive(true);
 				
 				// Stop all other events
@@ -90,61 +103,87 @@ public class Game extends Thread implements KeyListener{
 				
 				// Check if the movement is possible
 				if(moves[0].testMovement()) {
-					moves[0].update();
-					timer = new TimeCounter(500);
+					now = System.nanoTime();
+					// Start a timer to wait 300ms before moving again
+					// in order to avoid moving too fast.
+					if(now - lastCall >= 200000000)
+					{
+						// Update the player's position
+						moves[0].update();
+						lastCall = System.nanoTime();
+					}
+					else
+						now = System.nanoTime();
 				}
 				break;
 			case KeyEvent.VK_D:
-				System.out.println(moves[1].getName());
 				moves[1].setActive(true);
 				
 				moves[0].setActive(false);
 				moves[2].setActive(false);
 				moves[3].setActive(false);
+				
 				if(moves[1].testMovement()) {
-					moves[1].update();
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
+					now = System.nanoTime();
+					// Start a timer to wait 300ms before moving again
+					// in order to avoid moving too fast.
+					if(now - lastCall >= 200000000)
+					{
+						// Update the player's position
+						moves[1].update();
+						lastCall = System.nanoTime();
 					}
+					else
+						now = System.nanoTime();
 				}
 				break;
 			case KeyEvent.VK_Z:
-				System.out.println(moves[2].getName());
 				moves[2].setActive(true);
 				
 				moves[0].setActive(false);
 				moves[1].setActive(false);
 				moves[3].setActive(false);
 				if(moves[2].testMovement()) {
-					moves[2].update();
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e1) {
-						e1.printStackTrace();
+					now = System.nanoTime();
+					// Start a timer to wait 300ms before moving again
+					// in order to avoid moving too fast.
+					if(now - lastCall >= 200000000)
+					{
+						// Update the player's position
+						moves[2].update();
+						lastCall = System.nanoTime();
 					}
+					else
+						now = System.nanoTime();
 				}
 				break;
 			case KeyEvent.VK_S:
-				System.out.println(moves[3].getName());
 				moves[3].setActive(true);
 				
 				moves[0].setActive(false);
 				moves[1].setActive(false);
 				moves[2].setActive(false);
 				if(moves[3].testMovement()) {
-					moves[3].update();
-					timer = new TimeCounter(500);
+					now = System.nanoTime();
+					// Start a timer to wait 300ms before moving again
+					// in order to avoid moving too fast.
+					if(now - lastCall >= 200000000)
+					{
+						// Update the player's position
+						moves[3].update();
+						lastCall = System.nanoTime();
+					}
+					else
+						now = System.nanoTime();
 				}
-				break;
 			}
+			
 			// Count the number of buttons being pressed
 			for(int i = 0; i < 4; i++) {
 				if(moves[i].isActive() == true)
 					numberOfSimultaneousMoves ++;
 			}
-		//}
+		}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
@@ -162,9 +201,10 @@ public class Game extends Thread implements KeyListener{
 			moves[3].setActive(false);
 			break;
 		}
+		System.out.println("NOSM = " );
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
+		// Serves no purpose
 	}
 }
