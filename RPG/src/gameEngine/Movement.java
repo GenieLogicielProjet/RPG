@@ -1,25 +1,6 @@
 package gameEngine;
 
 import dataClasses.*;
-import java.awt.event.*;
-import java.awt.event.KeyEvent;
-
-public class Movement /*implements KeyListener*/{
-	public Movement()
-	{
-		
-	}
-	
-	public int keyTyped(KeyEvent e)
-	{
-		return e.getKeyCode();
-	}
-
-	public int keyReleased(KeyEvent e) 
-	{
-		return e.getKeyCode();package gameEngine;
-
-import dataClasses.*;
 import utility.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
@@ -27,82 +8,102 @@ import players.*;
 import gameDisplay.*;
 import javax.swing.*;
 
-public class Movement extends Thread implements KeyListener{
+public class Movement /*extends Thread*/{
 	private Map map;
 	private User player;
-	private JFrame gamePane;
+	private Monster monster;
 	private TimeCounter timer;
-	private boolean stopKeyListening;
 	
-	public Movement(JFrame pane,Map map, User player)
+	private boolean active;
+	private String name;
+	private int moveId;
+	private int xMove, yMove;
+
+	public Movement(Map map, User player, String name, int moveId)
 	{
 		this.map = map;
 		this.player = player;
-		gamePane = pane;
-	}
-	
-	public void keyPressed(KeyEvent e)
-	{
-		int eventSource = e.getKeyCode();
-		int lastNumberOfIterations = 0;
-		switch(eventSource) {
-		case KeyEvent.VK_Q:
-			timer = new TimeCounter(50);
-			timer.run();
-			while(!stopKeyListening)
-			{
-				if(lastNumberOfIterations+1 == timer.getIterations()) {
-					lastNumberOfIterations = timer.getIterations();
-					if(testMovement(-1, 0)) {
-						player.setRoomInsidePositionX(player.getRoomInsidePositionX()-1);
-					}
-				}
-			}
-			timer.setKeepRunning(false);
+		active = false;
+		this.name = name;
+		this.moveId = moveId;
+		
+		// Determine the effect of this movement
+		switch(moveId)
+		{
+		case 0: // Q key
+			xMove = -1;
+			yMove = 0;
+			break;
+		case 1: // D key
+			xMove = 1;
+			yMove = 0;
+			break;
+		case 2: // Z key
+			xMove = 0;
+			yMove = -1;
+			break;
+		case 3: // S key
+			xMove = 0;
+			yMove = 1;
+			break;
+		default: 
+			System.out.println("Unknown movement - doing nothing");
 			break;
 		}
 	}
-
-	public void keyReleased(KeyEvent e) 
+	
+	public void update()
 	{
-		stopKeyListening = true;
-	}
-	public void keyTyped(KeyEvent e) 
-	{
-		
-	}
-	public boolean testMovement(int xMove, int yMove)
-	{
-		int cellType = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()][player.getRoomInsidePositionY()].type;
-		Object cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()][player.getRoomInsidePositionY()].content;
-		if(cellType == 0 || cellType == 1) {
-			return false;
-		}
-		if(cellType == 3)
-		{
-			player.setRoomPosition(player.getRoomPosition() - 1);
-			return false;
-		}
-		if(cellType == 4)
-		{
-			player.setRoomPosition(player.getRoomPosition() + 1);
-			return false;
-		}
-		if(cellType == 5) {
-			// start the shop interface
-			return false;
-		}
-		return false;
+		System.out.println(this.name);
+		player.setRoomInsidePositionX(player.getRoomInsidePositionX() + xMove);
+		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);
 	}
 	
-	public void run() {
-		gamePane.addKeyListener(this);
-	}
-}
-	}
-
-	public int keyPressed(KeyEvent e) 
+	public boolean testMovement()
 	{
-		return e.getKeyCode();
+		if(active == true)
+		{
+			int cellType = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].type;
+			Object cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].content;
+			if(cellType == 0 || cellType == 1) 
+			{
+				return false;
+			}
+			if(cellType == 3)
+			{
+				return false;
+			}
+			if(cellType == 4)
+			{
+				return false;
+			}
+			if(cellType == 5) 
+			{
+				// start the shop interface
+				return false;
+			}
+			/*if(cellContent.getClass() == monster.getClass()) 
+			{
+				return false;
+			}*/
+			// if(cellContent.getClass() == boss.getClass)
+			else
+				return true;
+		}
+		else
+			return false;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	public String getName() {
+		return name;
+	}
+	public void run() {
+		
 	}
 }
