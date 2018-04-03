@@ -1,7 +1,6 @@
 package gameEngine;
 
 import dataClasses.*;
-import utility.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
 import players.*;
@@ -11,8 +10,8 @@ import javax.swing.*;
 public class Movement /*extends Thread*/{
 	private Map map;
 	private User player;
-	private Monster monster;
-	private TimeCounter timer;
+	private User monster;
+	private User timer;
 	
 	private boolean active;
 	private String name;

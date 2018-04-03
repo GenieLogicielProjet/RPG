@@ -8,7 +8,6 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import GUI.Interface;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;

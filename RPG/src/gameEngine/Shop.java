@@ -13,8 +13,8 @@ public class Shop extends Room{
 		
 		for(int i = 0; i < 3; i++)
 		{
-			roomLayout[shopLocationX + i][shopLocationY] = 4;
-			roomLayout[shopLocationX + i][shopLocationY] = 4;
+			roomLayout[shopLocationX + i][shopLocationY].type = 4;
+			roomLayout[shopLocationX + i][shopLocationY].type = 4;
 		}
 	}
 }

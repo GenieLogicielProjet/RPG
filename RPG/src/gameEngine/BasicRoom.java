@@ -9,18 +9,30 @@ public class BasicRoom extends Room{
 		super();
 		boolean b;
 		int numberOfObstacles;
-		
-		numberOfObstacles = randomNumber.nextInt(9) + 20;
+		int ruleNumber = 0;
+		numberOfObstacles = randomNumber.nextInt(9) + 4;
 		
 		// Initialize the obstacles randomly
-		for(int j = 1; j <= 4; j++)
+		for(int j = 1; j <= numberOfObstacles; j++)
 		{
 			b = randomNumber.nextBoolean();
 			if(b) {
-				roomLayout[j][randomNumber.nextInt(14)+1] = 1;
+				ruleNumber = randomNumber.nextInt(14)+1;
+				if(ruleNumber<15 && ruleNumber>0){
+					roomLayout[j][ruleNumber].type = 1;
+				}
+				else{
+					j=j-1;
+				}
 			}
 			else {
-				roomLayout[randomNumber.nextInt(13)+1][j] = 1;
+				ruleNumber = randomNumber.nextInt(13)+1;
+				if(ruleNumber<14 && ruleNumber>0){
+					roomLayout[ruleNumber][j].type = 1;
+				}
+				else{
+					j=j-1;
+				}
 			}	
 		}
 		numberOfObstacles -= 4;

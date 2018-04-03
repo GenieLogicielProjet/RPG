@@ -1,7 +1,6 @@
 package gameEngine;
 
 import javax.swing.*;
-import utility.*;
 import java.util.*;
 import java.awt.*;
 import gameDisplay.*;
@@ -30,28 +29,32 @@ public class Game extends Thread implements KeyListener{
 	private long lastCall = 0;
 	private boolean keyPressValid;
 	
+	private HUD headUpDisplay;
+	
 	public Game() {		
 		// Window of the whole Game (including HUD and Playable part)
-		JFrame gameWindow = new JFrame();
+		//JFrame gameWindow = new JFrame();
 		
 		// Debug : print the layout of each room
 		// map.printMap(map);
 		
 		// Initialize the basic parameters
-		gameWindow.setVisible(true);
+		/*gameWindow.setVisible(true);
 		gameWindow.setSize(1280, 960);
 		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameWindow.setResizable(true);
 		gameWindow.setLocationRelativeTo(null);
-		gameWindow.setTitle("RPG");
+		gameWindow.setTitle("RPG");*/
 		
 		// Set up the HUD
-		HUD headUpDisplay = new HUD(gameWindow);
+		headUpDisplay = new HUD();
 		
 		// Displayer is used to draw every time it is possible
-		gameWindow.setContentPane(displayer);
-		gameWindow.addKeyListener(this);
-		
+		//gameWindow.setContentPane(displayer);
+		//gameWindow.addKeyListener(this);
+		headUpDisplay.setGameView(displayer);
+		headUpDisplay.createHUD();
+		headUpDisplay.addKeyListener(this);
 		// Define all the 4 different movement types
 		moves[0] = new Movement(map, player, "left", 0);
 		moves[1] = new Movement(map, player, "right", 1);
@@ -69,6 +72,7 @@ public class Game extends Thread implements KeyListener{
 		displayer.removeAll();
 		displayer.revalidate();
 		displayer.repaint();
+		headUpDisplay.repaint();
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
