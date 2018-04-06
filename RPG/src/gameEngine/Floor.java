@@ -33,7 +33,7 @@ public class Floor{
 	public Floor() {
 		int numberOfRooms = randomNumber.nextInt(4) + 6;
 		int shopLocation=0; 
-		rooms = new Room[numberOfRooms+3];
+		rooms = new Room[numberOfRooms+1];
 		
 		for(int j=0;j<1;j++){
 			shopLocation = randomNumber.nextInt(numberOfRooms);
@@ -64,7 +64,7 @@ public class Floor{
 				}
 			}
 		}
-		rooms[numberOfRooms-1] = new EndRoom(rooms[numberOfRooms-2]);
+		rooms[numberOfRooms] = new EndRoom(rooms[numberOfRooms-2]);
 	}
 	
 	public void printFloor()

@@ -39,17 +39,17 @@ public class RoomDisplay extends JPanel{
 		 sprites[4] = "images/Sprites/Monstre1.png";
 		 sprites[5] = "images/Sprites/Perso2_32px.png";*/
 			
-		sprites[0] = ImageIO.read(new File("images/Sprites/E1_Mur.png"));
-		sprites[1] = ImageIO.read(new File("images/Sprites/E1_voiture.png"));
-		sprites[2] = ImageIO.read(new File("images/Sprites/E1_Sol.png"));
-		sprites[3] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[4] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[5] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[6] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[7] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[8] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[9] = ImageIO.read(new File("images/Sprites/Monstre1.png"));
-		sprites[10] = ImageIO.read(new File("images/Sprites/Perso2_32px.png"));
+		sprites[0] = ImageIO.read(new File("images/Sprites/F1/F1_wall.png"));
+		sprites[1] = ImageIO.read(new File("images/Sprites/F1/F1_cars.png"));
+		sprites[2] = ImageIO.read(new File("images/Sprites/F1/F1_floor.png"));
+		sprites[3] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[4] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[5] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[6] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[7] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[8] = ImageIO.read(new File("images/Sprites/Others/door.png"));
+		sprites[9] = ImageIO.read(new File("images/Sprites/Others/shop.jpg"));
+		sprites[10] = ImageIO.read(new File("images/Sprites/Main_Character/Perso2_32px.png"));
 		
 		
 		 // Set the values of the running variables map and player the same as those of the main
