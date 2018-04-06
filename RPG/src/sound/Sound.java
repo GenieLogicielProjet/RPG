@@ -1,4 +1,4 @@
-package sound;
+rapackage sound;
 
 import java.io.*;
 import java.net.URL;
@@ -16,7 +16,7 @@ public class Sound {
    
       try {
          // Open an audio input stream.
-    	  File soundFile = new File("blackpanther.wav");
+    	  File soundFile = new File("esperance.wav");
     	  AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);
          // Get a sound clip resource.
          Clip clip = AudioSystem.getClip();
