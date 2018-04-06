@@ -17,6 +17,7 @@ public class Map{
 	// Creation of the map
 	public Map() {
 		for(int i = 0; i < 3; i++) {
+			System.out.println("FLOOR = "+i);
 			floors[i] = new Floor();
 		}
 	}

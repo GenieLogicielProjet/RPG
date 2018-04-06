@@ -11,5 +11,7 @@ public class User extends Player{
 		roomInsidePositionY = 1;
 		floorPosition = 0;
 		roomPosition = 0;
+		//healthPoints = 100;
+		currentHealthPoints = 0;
 	}
 }

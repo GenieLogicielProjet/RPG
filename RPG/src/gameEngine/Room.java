@@ -15,6 +15,8 @@ abstract class Room {
 	
 	// Random number used for the creation of rooms randomly
 	protected Random randomNumber = new Random();
+	private int doorLocation ;
+	private int doorLocation1;
 	
 	public Room() 
 	{
@@ -59,7 +61,7 @@ abstract class Room {
 		}
 		
 		// Placing the door 
-		int doorLocation = randomNumber.nextInt(4);
+		/*doorLocation = randomNumber.nextInt(4);
 		if(doorLocation == 0)
 			roomLayout[0][1+randomNumber.nextInt(12)].type = 3;
 		else if (doorLocation == 1)
@@ -67,9 +69,35 @@ abstract class Room {
 		else if (doorLocation == 2)
 			roomLayout[15][1+randomNumber.nextInt(12)].type = 3;
 		else 
-			roomLayout[1+randomNumber.nextInt(11)][14].type = 3;
+			roomLayout[1+randomNumber.nextInt(11)][14].type = 3;*/
 	}
 	
+	
+
+	public int getDoorLocation() {
+		return doorLocation;
+	}
+
+
+
+	public void setDoorLocation(int doorLocation) {
+		this.doorLocation = doorLocation;
+	}
+
+
+
+	public int getDoorLocation1() {
+		return doorLocation1;
+	}
+
+
+
+	public void setDoorLocation1(int doorLocation1) {
+		this.doorLocation1 = doorLocation1;
+	}
+
+
+
 	public void printLayout() {
 		for(int i = 0; i < 16; i++)
 		{

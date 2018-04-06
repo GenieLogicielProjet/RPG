@@ -12,6 +12,7 @@ import java.awt.event.*;
 public class Menu implements ActionListener{
 	private boolean startGame = false;
 	private boolean quitMenu = false;
+	private Thread x;
 	
 	// Create the frame of the menu and the two buttons inside (play and quit)
 	JFrame menuWindow = new JFrame();
@@ -44,7 +45,10 @@ public class Menu implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == playButton)
 		{
-			new Game();
+			menuWindow.setVisible(false);
+			x = new Thread(new Game());
+			System.exit(0);
+			x.start();
 		}
 		if(e.getSource() == quitButton)
 			System.exit(0);

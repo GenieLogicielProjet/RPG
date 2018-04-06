@@ -23,7 +23,7 @@ public class RoomDisplay extends JPanel{
 	private int spriteRequired;
 	
 	// Array containing the path to every Sprite
-	private BufferedImage []sprites = new BufferedImage[6];
+	private BufferedImage []sprites = new BufferedImage[11];
 	
 	public RoomDisplay(Map map, User player)
 	{
@@ -43,8 +43,14 @@ public class RoomDisplay extends JPanel{
 		sprites[1] = ImageIO.read(new File("images/Sprites/E1_voiture.png"));
 		sprites[2] = ImageIO.read(new File("images/Sprites/E1_Sol.png"));
 		sprites[3] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
-		sprites[4] = ImageIO.read(new File("images/Sprites/Monstre1.png"));
-		sprites[5] = ImageIO.read(new File("images/Sprites/Perso2_32px.png"));
+		sprites[4] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
+		sprites[5] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
+		sprites[6] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
+		sprites[7] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
+		sprites[8] = ImageIO.read(new File("images/Sprites/E1_Porte.png"));
+		sprites[9] = ImageIO.read(new File("images/Sprites/Monstre1.png"));
+		sprites[10] = ImageIO.read(new File("images/Sprites/Perso2_32px.png"));
+		
 		
 		 // Set the values of the running variables map and player the same as those of the main
 		 this.map = map;
@@ -64,18 +70,19 @@ public class RoomDisplay extends JPanel{
 					boolean tryDraw;
 					// Get the content of the specified cell
 					int cellContent = map.getContent(player.getFloorPosition(), player.getRoomPosition(), positionX, positionY);
-					if(cellContent >= 0 && cellContent <= 4)
+					if(cellContent >= 0 && cellContent <= 9)
 					{
 						spriteRequired = cellContent;
 					}
 					else
 					{
+						System.out.println(cellContent);
 						System.out.println("Erreur de chargement de la map : case inconnue");
 						spriteRequired = 2;
 					}
 					if(player.getRoomInsidePositionX() == positionX && player.getRoomInsidePositionY() == positionY)
 					{
-						spriteRequired = 5;
+						spriteRequired = 10;
 					}
 					// Display the right sprite at the right place
 					//BufferedImage image = ImageIO.read(new File(sprites[spriteRequired]));

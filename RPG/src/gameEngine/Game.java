@@ -30,6 +30,11 @@ public class Game extends Thread implements KeyListener{
 	private boolean keyPressValid;
 	
 	private HUD headUpDisplay;
+	private LifeBar lifeBar;
+	private ManaBar manaBar;
+	private XpBar xpBar;
+	
+	private int x = 0;
 	
 	public Game() {		
 		// Window of the whole Game (including HUD and Playable part)
@@ -46,12 +51,21 @@ public class Game extends Thread implements KeyListener{
 		gameWindow.setLocationRelativeTo(null);
 		gameWindow.setTitle("RPG");*/
 		
+		// init 
+			
+		player.setHealthPoints(100);
+		
 		// Set up the HUD
 		headUpDisplay = new HUD();
-		
+		lifeBar = new LifeBar();
+		manaBar = new ManaBar();
+		xpBar = new XpBar();
+		headUpDisplay.setXpBar(xpBar);
+		headUpDisplay.setManaBar(manaBar);
 		// Displayer is used to draw every time it is possible
 		//gameWindow.setContentPane(displayer);
 		//gameWindow.addKeyListener(this);
+		headUpDisplay.setHpBar(lifeBar);
 		headUpDisplay.setGameView(displayer);
 		headUpDisplay.createHUD();
 		headUpDisplay.addKeyListener(this);
@@ -60,6 +74,7 @@ public class Game extends Thread implements KeyListener{
 		moves[1] = new Movement(map, player, "right", 1);
 		moves[2] = new Movement(map, player, "up", 2);
 		moves[3] = new Movement(map, player, "down", 3);
+	
 		
 		// Game keeps running until the user quits
 		while(!quit)
@@ -72,6 +87,15 @@ public class Game extends Thread implements KeyListener{
 		displayer.removeAll();
 		displayer.revalidate();
 		displayer.repaint();
+		lifeBar.removeAll();
+		lifeBar.revalidate();
+		lifeBar.repaint();
+		manaBar.removeAll();
+		manaBar.revalidate();
+		manaBar.repaint();
+		xpBar.removeAll();
+		xpBar.revalidate();
+		xpBar.repaint();
 		headUpDisplay.repaint();
 	}
 	@Override

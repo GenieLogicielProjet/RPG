@@ -53,7 +53,7 @@ public class Movement /*extends Thread*/{
 	
 	public void update()
 	{
-		System.out.println("a" + this.name);
+		//System.out.println("a" + this.name);
 		player.setRoomInsidePositionX(player.getRoomInsidePositionX() + xMove);
 		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);
 	}
@@ -71,14 +71,50 @@ public class Movement /*extends Thread*/{
 			if(cellType == 3)
 			{
 				player.setRoomPosition(player.getRoomPosition() - 1);
-				return false;
+				System.out.println(player.getRoomPosition());
+				//player.getRoomPosition()+1;
+				//player.setRoomPosition(player.getRoomplayer.setRoomPosition() = Position() - 1);
+				
+				return true;
 			}
 			if(cellType == 4)
 			{
 				player.setRoomPosition(player.getRoomPosition() + 1);
+				System.out.println(player.getRoomPosition());
+				 
 				return false;
 			}
 			if(cellType == 5) 
+			{
+				player.setRoomPosition(player.getRoomPosition() + 2);
+				// start the shop interface
+				return true;
+			}
+			if(cellType == 6) 
+			{
+				player.setRoomPosition(player.getRoomPosition() - 2);
+				System.out.println(player.getRoomPosition());
+				// start the shop interface
+				return true;
+			}
+			if(cellType == 7) 
+			{
+				player.setFloorPosition(player.getFloorPosition()+1);
+				// start the shop interface
+				return true;
+			}
+			if(cellType == 8) 
+			{
+				player.setFloorPosition(player.getFloorPosition()-1);
+				// start the shop interface
+				return true;
+			}
+			if(cellType == 9) 
+			{
+				// start the shop interface
+				return false;
+			}
+			if(cellType == 10) 
 			{
 				// start the shop interface
 				return false;
