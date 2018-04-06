@@ -1,11 +1,16 @@
 package gameEngine;
 
+import players.*;
+import dataClasses.Item;
+
 public class Cell {
 	public int type;
-	public Object content;
+	public Monster monster;
+	public Item item;
 	
-	public Cell(int type, Object content) {
+	public Cell(int type, Item item, Monster monster) {
 		this.type = type;
-		this.content = content;
+		this.monster = monster;
+		this.item = item;
 	}
 }

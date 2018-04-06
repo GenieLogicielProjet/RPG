@@ -58,6 +58,5 @@ public class BasicRoom extends Room{
 	}
 	public void setDoorLocation(int doorLocation) {
 		this.doorLocation = doorLocation;
-	}
-	
+	}	
 }

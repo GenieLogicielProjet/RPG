@@ -10,7 +10,7 @@ public class EndRoom extends Room {
 	int ruleNumber = 0;
 	numberOfObstacles = randomNumber.nextInt(5) + 6;
 	System.out.println("EndRoom");
-	//Escalier
+	//Stairs
 	roomLayout[12][12].type = 7;
 	
 	// Initialize the obstacles randomly

@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.awt.color.*;
 import java.awt.Graphics;
+import players.*;
 
 abstract class Room {
 	
@@ -20,6 +21,9 @@ abstract class Room {
 	
 	public Room() 
 	{
+		Monster monster = new Monster(0, 0, 0, 0, 0, 0, true);
+		Monster noMonster = new Monster(0, 0, 0, 0, 0, 0, false);
+		
 		/* Creation of the layout of a room
 		 * 
 		 * 0 = Wall
@@ -35,7 +39,10 @@ abstract class Room {
 		{
 			for(int j = 0; j < 15; j++)
 			{
-				roomLayout[i][j] = new Cell(2, null);
+				roomLayout[i][j] = new Cell(2, null, noMonster);
+				if(i == 5 && j == 8) {
+					roomLayout[i][j] = new Cell(2, null, monster);
+				}
 			}
 		}
 		

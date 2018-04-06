@@ -38,28 +38,24 @@ public class AfterSHopRoom extends Room{
 		}
 		numberOfObstacles -= 4;
 		
-		// Placing the door  
-		
-		
-		
-				
-				doorLocation = opposed(lastRoom.getDoorLocation1());
-				if(doorLocation == 0){
-					roomLayout[0][1+randomNumber.nextInt(12)].type = 6;
-					//System.out.println("haut");
-				}
-				else if (doorLocation == 1){
-					roomLayout[1+randomNumber.nextInt(11)][0].type = 6;
-					//System.out.println("gauche");
-				}
-				else if (doorLocation == 2){
-					roomLayout[15][1+randomNumber.nextInt(12)].type = 6;
-					//System.out.println("bas");
-				}
-				else{ 
-					roomLayout[1+randomNumber.nextInt(11)][14].type = 6;
-					//System.out.println("droite");
-				}
+		// Placing the door  		
+		doorLocation = opposed(lastRoom.getDoorLocation1());
+		if(doorLocation == 0){
+			roomLayout[0][1+randomNumber.nextInt(12)].type = 6;
+			//System.out.println("haut");
+		}
+		else if (doorLocation == 1){
+			roomLayout[1+randomNumber.nextInt(11)][0].type = 6;
+			//System.out.println("gauche");
+		}
+		else if (doorLocation == 2){
+			roomLayout[15][1+randomNumber.nextInt(12)].type = 6;
+			//System.out.println("bas");
+		}
+		else{ 
+			roomLayout[1+randomNumber.nextInt(11)][14].type = 6;
+			//System.out.println("droite");
+		}
 				
 		
 		int tampon = doorLocation;

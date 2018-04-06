@@ -62,9 +62,7 @@ public class HUD extends JFrame{
 			    	container1.add(goldView);
 			    left.add(container1);
 			    left.add(Box.createVerticalStrut(25));
-		    
-		    
-		    
+    
 		    Box right = Box.createVerticalBox();
 			    right.add(Box.createVerticalStrut(25));
 			    Box container = Box.createHorizontalBox();
@@ -106,10 +104,7 @@ public class HUD extends JFrame{
 			    	inventoryView.setBackground(Color.ORANGE);
 			    	inventoryView.setPreferredSize(new Dimension(350,250));
 			    right.add(inventoryView);
-			    right.add(Box.createVerticalStrut(25));
-		    
-		    
-		    
+			    right.add(Box.createVerticalStrut(25));		    
 		    
 		    Box hiddenContainer = Box.createHorizontalBox();
 		    hiddenContainer.add(Box.createHorizontalStrut(25));
@@ -120,7 +115,7 @@ public class HUD extends JFrame{
 		    
 		    hiddenContainer.setOpaque(false);
 		    
-		    // pour un fond d'écran je suis en manque d'idée
+		    // pour un fond d'Ã©cran je suis en manque d'idÃ©e
 			/*BorderLayout leLayout = new BorderLayout();
 			this.setLayout(leLayout);
 			

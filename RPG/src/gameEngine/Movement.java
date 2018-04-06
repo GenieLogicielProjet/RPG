@@ -1,17 +1,18 @@
 package gameEngine;
 
 import dataClasses.*;
+import utility.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
 import players.*;
 import gameDisplay.*;
 import javax.swing.*;
 
-public class Movement /*extends Thread*/{
+public class Movement{
 	private Map map;
 	private User player;
-	private User monster;
-	private User timer;
+	private Monster monster;
+	private TimeCounter timer;
 	
 	private boolean active;
 	private String name;
@@ -53,17 +54,17 @@ public class Movement /*extends Thread*/{
 	
 	public void update()
 	{
-		//System.out.println("a" + this.name);
 		player.setRoomInsidePositionX(player.getRoomInsidePositionX() + xMove);
-		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);
+		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);	
 	}
 	
 	public boolean testMovement()
 	{
 		if(active == true)
 		{
+			Monster cellContent = new Monster(0, 0, 0, 0, 0, 0, false);
 			int cellType = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].type;
-			Object cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].content;
+			cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].monster;
 			if(cellType == 0 || cellType == 1) 
 			{
 				return false;
@@ -125,11 +126,10 @@ public class Movement /*extends Thread*/{
 				// start the shop interface
 				return false;
 			}
-			/*if(cellContent.getClass() == monster.getClass()) 
+			if(cellContent.isPresent()) 
 			{
 				return false;
-			}*/
-			// if(cellContent.getClass() == boss.getClass)
+			}
 			else
 				return true;
 		}
@@ -145,8 +145,5 @@ public class Movement /*extends Thread*/{
 	}
 	public String getName() {
 		return name;
-	}
-	public void run() {
-		
 	}
 }
