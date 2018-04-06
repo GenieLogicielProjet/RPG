@@ -7,29 +7,38 @@ public abstract class Player extends Characteristics{
 	protected int roomInsidePositionY;
 	protected int floorPosition;
 	protected int roomPosition;
-	
-	protected int maxHealthPoints;
-	protected int currentHealthPoints;
-	
-	Player(){
-		super();
-		//currentHealthPoints = 100;
-	}
+	protected int orientation = 0;
 
-	public int getRoomInsidePositionX() {
+	private int maxHealthPoints;
+	private int currentHealthPoints;
+	
+	public Player(int swiftness, int armor, int agility, int strength, int power, int maxHealthPoints){
+		super(swiftness, armor, agility, strength, power);
+		this.maxHealthPoints = maxHealthPoints;
+		this.currentHealthPoints = maxHealthPoints;
+	}
+	
+	public void update(long elapsedTime) 
+	{
+		
+	}
+	
+	// Getters and Setters
+	public int getRoomInsidePositionX() 
+	{
 		return roomInsidePositionX;
 	}
 
-	public void setRoomInsidePositionX(int roomInsidePositionX) {
-		this.roomInsidePositionX = roomInsidePositionX;
+	public void setRoomInsidePositionX(int roomPositionX) {
+		this.roomInsidePositionX = roomPositionX;
 	}
 
 	public int getRoomInsidePositionY() {
 		return roomInsidePositionY;
 	}
 
-	public void setRoomInsidePositionY(int roomInsidePositionY) {
-		this.roomInsidePositionY = roomInsidePositionY;
+	public void setRoomInsidePositionY(int roomPositionY) {
+		this.roomInsidePositionY = roomPositionY;
 	}
 
 	public int getFloorPosition() {
@@ -44,8 +53,8 @@ public abstract class Player extends Characteristics{
 		return roomPosition;
 	}
 
-	public void setRoomPosition(int roomPosition) {
-		this.roomPosition = roomPosition;
+	public void setRoomPosition(int mapPosition) {
+		this.roomPosition = mapPosition;
 	}
 
 	public int getMaxHealthPoints() {
@@ -63,7 +72,13 @@ public abstract class Player extends Characteristics{
 	public void setCurrentHealthPoints(int currentHealthPoints) {
 		this.currentHealthPoints = currentHealthPoints;
 	}
-
 	
+	public int getOrientation() {
+		return orientation;
+	}
+
+	public void setOrientation(int orientation) {
+		this.orientation = orientation;
+	}
 	
 }
