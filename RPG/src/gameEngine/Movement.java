@@ -99,13 +99,19 @@ public class Movement /*extends Thread*/{
 			}
 			if(cellType == 7) 
 			{
-				player.setFloorPosition(player.getFloorPosition()+1);
+				if(player.getFloorPosition()!= 2){
+					player.setRoomPosition(0);
+					player.setFloorPosition(player.getFloorPosition()+1);
+				}
 				// start the shop interface
 				return true;
 			}
 			if(cellType == 8) 
 			{
-				player.setFloorPosition(player.getFloorPosition()-1);
+				if(player.getFloorPosition()!= 0){
+					player.setRoomPosition(map.getLastRoom(map.floors[player.getFloorPosition()-1])); 
+					player.setFloorPosition(player.getFloorPosition()-1);
+				}
 				// start the shop interface
 				return true;
 			}

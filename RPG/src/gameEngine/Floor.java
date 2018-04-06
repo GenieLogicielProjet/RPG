@@ -29,6 +29,7 @@ public class Floor{
 	int number;
 	private Random randomNumber = new Random();
 	public Room []rooms;
+	private int lastRoom;
 	
 	public Floor() {
 		int numberOfRooms = randomNumber.nextInt(4) + 6;
@@ -65,8 +66,17 @@ public class Floor{
 			}
 		}
 		rooms[numberOfRooms] = new EndRoom(rooms[numberOfRooms-2]);
+		lastRoom = numberOfRooms;
 	}
 	
+	public int getLastRoom() {
+		return lastRoom;
+	}
+
+	public void setLastRoom(int lastRoom) {
+		this.lastRoom = lastRoom;
+	}
+
 	public void printFloor()
 	{
 		for(Room r: rooms)

@@ -27,7 +27,9 @@ public class Map{
 	{
 		return floors[floor].rooms[room].roomLayout[x][y].type;
 	}
-	
+	public int getLastRoom(Floor f){
+		return f.getLastRoom();
+	}
 	// Debugging : print each floor separated by a line
 	public void printMap(Map map)
 	{
