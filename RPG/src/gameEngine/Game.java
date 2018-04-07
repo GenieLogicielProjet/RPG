@@ -284,7 +284,20 @@ public class Game extends Thread implements KeyListener, MouseListener{
 			if(attacks[3].testAttack())
 				attacks[3].update(0, 0);
 			break;
+		case KeyEvent.VK_I:
+			
+			break;
+		case KeyEvent.VK_2:
+			
+			break;
+		case KeyEvent.VK_3:
+			
+			break;
+		case KeyEvent.VK_4:
+			
+			break;
 		}
+		
 	}
 	@Override
 	public void keyTyped(KeyEvent e) {
