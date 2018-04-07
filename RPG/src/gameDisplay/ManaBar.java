@@ -6,19 +6,19 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import players.*;
 
 public class ManaBar extends JPanel{
 	private JProgressBar mana;
-	private int manaPoint;
+	private User player;
 	
-	public ManaBar() {
-		// TODO Auto-generated constructor stub
+	public ManaBar(User player) {
+		this.player = player;
 		mana  = new JProgressBar();
-		mana.setMaximum(100);
+		mana.setMaximum(player.getMaxManaPoints());
 		mana.setMinimum(0);
 		mana.setForeground(Color.blue);
 		mana.setStringPainted(true);
-		
 		mana.setSize(150,50);
 		//this.add(life);
 		mana.setStringPainted(true);
@@ -26,12 +26,9 @@ public class ManaBar extends JPanel{
 	    this.setVisible(true);
 	}
 	public void paintComponent(Graphics g){
-
-		mana.setValue(manaPoint);
+		mana.setMaximum(player.getMaxManaPoints());
+		mana.setValue(player.getCurrentManaPoints());
 		this.add(mana, BorderLayout.CENTER);
 	    this.setVisible(true);
-	}
-	public void setManaPoint(int mana){
-		manaPoint = mana;
 	}
 }

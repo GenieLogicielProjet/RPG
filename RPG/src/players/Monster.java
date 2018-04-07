@@ -11,18 +11,19 @@ public class Monster extends Player{
 	{
 		super(swiftness, armor, agility, strength, power, maxHealthPoints);
 		this.present = present;
+		loot = new Loot(0, 15);
 	}
 	
 	public void updateMonster(User player, Map map) {
 		if(this.getCurrentHealthPoints() <= 0) {
 			this.setPresent(false);
 		}
+		loot.setExperienceReward(player.getLevel()/5);
 		move(player, map);
 	}
 	
 	public void move(User player, Map map) {
 		Monster temp = new Monster(0, 0, 0, 0, 0, 0, false);
-		
 		
 	}
 	

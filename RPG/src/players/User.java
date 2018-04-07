@@ -5,6 +5,8 @@ import dataClasses.*;
 public class User extends Player{
 	private int maxManaPoints;
 	private int currentManaPoints;
+	private int currentXpPoints;
+	private int maxXpPoints;
 	private int level;
 	public Spell []spells = new Spell[5];
 	
@@ -17,6 +19,10 @@ public class User extends Player{
 		roomInsidePositionY = 1;
 		floorPosition = 0;
 		roomPosition = 0;
+		level = 1;
+		maxXpPoints = 100;
+		currentXpPoints = 0;
+		
 		spells[0] = new Spell(500*microConv, false, 0, true, 200000000);
 		spells[1] = new Spell(1200*microConv, false, 24, true, 500000000);
 		spells[2] = new Spell(7000*microConv, false, 8, false, 300000000);
@@ -25,6 +31,26 @@ public class User extends Player{
 		
 		maxManaPoints = 100;
 		currentManaPoints = maxManaPoints;
+	}
+	
+	public void update(long elapsedTime) 
+	{
+		if(currentXpPoints >= maxXpPoints) {
+			levelUp(currentXpPoints);
+		}
+	}
+	
+	// Getters & Setters
+	public int getCurrentXpPoints() {
+		return currentXpPoints;
+	}
+
+	public int getMaxXpPoints() {
+		return maxXpPoints;
+	}
+
+	public void setCurrentXpPoints(int currentXpPoints) {
+		this.currentXpPoints = currentXpPoints;
 	}
 
 	public int getMaxManaPoints() {
@@ -43,18 +69,17 @@ public class User extends Player{
 		this.currentManaPoints = currentManaPoints;
 	}
 
-	public Spell[] getSpells() {
-		return spells;
+	public Spell getSpell(int spellID) {
+		return spells[spellID];
 	}
 
-	public void setSpells(Spell[] spells) {
-		this.spells = spells;
-	}
 	public int getLevel() {
 		return level;
 	}
-	public void levelUp() {
-		this.level ++;
+	public void levelUp(int overlap) {
+		level ++;
+		currentXpPoints = overlap;
+		maxXpPoints = maxXpPoints + (level-1)*100;
 		System.out.println("New level unlocked : You are now level " + level);
 		// Mystic teleport : teleport that deals damage on impact
 		if(level == 5)

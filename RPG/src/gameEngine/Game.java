@@ -47,31 +47,21 @@ public class Game extends Thread implements KeyListener, MouseListener{
 		// Debug : print the layout of each room
 		// map.printMap(map);
 		
-		// Initialize the basic parameters
-		gameWindow.setVisible(true);
-		gameWindow.setSize(1280, 960);
-		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		gameWindow.setResizable(true);
-		gameWindow.setLocationRelativeTo(null);
-		gameWindow.setTitle("RPG");
-		
-		// Set up the HUD
+		// Set up the HUD and the window of the game
 		headUpDisplay = new HUD();
-		lifeBar = new LifeBar();
-		manaBar = new ManaBar();
-		xpBar = new XpBar();
+		lifeBar = new LifeBar(player);
+		manaBar = new ManaBar(player);
+		xpBar = new XpBar(player);
 		headUpDisplay.setXpBar(xpBar);
 		headUpDisplay.setManaBar(manaBar);
+		
 		// Displayer is used to draw every time it is possible
-		//gameWindow.setContentPane(displayer);
-		//gameWindow.addKeyListener(this);
 		headUpDisplay.setHpBar(lifeBar);
 		headUpDisplay.setGameView(displayer);
 		headUpDisplay.createHUD();
 		headUpDisplay.addKeyListener(this);
 		
 		// Displayer is used to draw every time it is possible
-		// gameWindow.addKeyListener(this);
 		displayer.addMouseListener(this);
 		
 		// Define all the 4 different movement types
@@ -125,7 +115,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 	public void updateGame(long elapsedTime)
 	{
 		playerSpeed = player.getSwiftness() * 10000000;
-		for(int i = -1; i < player.getRoomPosition(); i++)
+		for(int i = player.getRoomPosition() - 1; i < player.getRoomPosition() + 1; i++)
 		{
 			for(int j = 0; j < 16; j++)
 			{
@@ -137,6 +127,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 		}
 		player.update(elapsedTime);
 	}
+	
 	
 	public void aimed() {
 		aiming = false;
@@ -283,11 +274,6 @@ public class Game extends Thread implements KeyListener, MouseListener{
 			}
 			break;
 		case KeyEvent.VK_A:
-			// DELETE THIS LOOP
-			while(player.getLevel() < 15)
-			{
-				player.levelUp();
-			}
 			if(attacks[4].testAttack())
 			{
 				aiming = true;

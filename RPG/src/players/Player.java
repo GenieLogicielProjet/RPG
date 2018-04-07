@@ -18,11 +18,6 @@ public abstract class Player extends Characteristics{
 		this.currentHealthPoints = maxHealthPoints;
 	}
 	
-	public void update(long elapsedTime) 
-	{
-		
-	}
-	
 	// Getters and Setters
 	public int getRoomInsidePositionX() 
 	{

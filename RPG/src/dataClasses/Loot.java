@@ -3,8 +3,8 @@ package dataClasses;
 public class Loot {
 	private int experienceReward;
 	private int goldReward;
+	
 	public Loot(int experienceReward, int goldReward) {
-		super();
 		this.experienceReward = experienceReward;
 		this.goldReward = goldReward;
 	}
