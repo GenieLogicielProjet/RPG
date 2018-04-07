@@ -15,6 +15,7 @@ public class Movement{
 	private TimeCounter timer;
 	
 	private boolean active;
+	private boolean shopActive = false;
 	private String name;
 	private int moveId;
 	private int xMove, yMove;
@@ -88,14 +89,12 @@ public class Movement{
 			if(cellType == 5) 
 			{
 				player.setRoomPosition(player.getRoomPosition() + 2);
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 6) 
 			{
 				player.setRoomPosition(player.getRoomPosition() - 2);
 				System.out.println(player.getRoomPosition());
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 7) 
@@ -104,7 +103,6 @@ public class Movement{
 					player.setRoomPosition(0);
 					player.setFloorPosition(player.getFloorPosition()+1);
 				}
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 8) 
@@ -113,17 +111,32 @@ public class Movement{
 					player.setRoomPosition(map.getLastRoom(map.floors[player.getFloorPosition()-1])); 
 					player.setFloorPosition(player.getFloorPosition()-1);
 				}
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 9) 
 			{
-				// start the shop interface
+				if(!shopActive) {
+					shopActive = true;
+					// SALUT SOLENE VOICI UN PENIS 8===========D~~
+					// start the shop interface
+					// On appelle la fonction :
+					// ShopInterface shopping = new ShopInterface(player);
+					// cette classe implements KeyListener avec specifiquement la ligne :
+					
+					/* 
+					 * @Override
+					 * public void KeyReleased(KeyEvent e){
+					 *  if(e.getKeyCode == KeyEvent.VK_ESC)
+					 * 		Quitte la fenetre je sais pas faire perso mdr fais tes recherches
+					 * 		
+					 * }
+					 * 
+					 */
+				}
 				return false;
 			}
 			if(cellType == 10) 
 			{
-				// start the shop interface
 				return false;
 			}
 			if(cellContent.isPresent()) 
