@@ -5,6 +5,9 @@ import dataClasses.*;
 public class Shop extends Room{
 	private Item []itemsSold = new Item[8];
 	private int doorLocation;
+	private int[] PreviousPosPlayer = new int[2];
+	private int[] NextPosPlayer = new int[2];
+	private int[] DoubleNextPosPlayer = new int[2];
 	public Shop(Room lastRoom) 
 	{
 		super();
@@ -20,19 +23,27 @@ public class Shop extends Room{
 		
 		doorLocation = opposed(lastRoom.getDoorLocation());
 		if(doorLocation == 0){
-			roomLayout[0][1+randomNumber.nextInt(12)].type = 3;
+			PreviousPosPlayer[0] = 0 ;
+			PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 			//System.out.println("haut");
 		}
 		else if (doorLocation == 1){
-			roomLayout[1+randomNumber.nextInt(11)][0].type = 3;
+			PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+			PreviousPosPlayer[1] = 0 ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 			//System.out.println("gauche");
 		}
 		else if (doorLocation == 2){
-			roomLayout[15][1+randomNumber.nextInt(12)].type = 3;
+			PreviousPosPlayer[0] = 15 ;
+			PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 			//System.out.println("bas");
 		}
-		else{ 
-			roomLayout[1+randomNumber.nextInt(11)][14].type = 3;
+		else if (doorLocation == 3){ 
+			PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+			PreviousPosPlayer[1] = 14 ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 			//System.out.println("droite");
 		}
 	}
@@ -41,6 +52,15 @@ public class Shop extends Room{
 	}
 	public void setDoorLocation(int doorLocation) {
 		this.doorLocation = doorLocation;
+	}
+	public int getPreviousPosPlayer(int indice) {
+		return PreviousPosPlayer[indice];
+	}
+	public int getNextPosPlayer(int indice) {
+		return NextPosPlayer[indice];
+	}
+	public int getDoubleNextPosPlayer(int indice) {
+		return DoubleNextPosPlayer[indice];
 	}
 	private int opposed(int number){
 		

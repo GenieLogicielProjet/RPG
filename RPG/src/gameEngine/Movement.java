@@ -71,8 +71,11 @@ public class Movement /*extends Thread*/{
 			if(cellType == 3)
 			{
 				player.setRoomPosition(player.getRoomPosition() - 1);
+				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].NextPosPlayerX(player.getRoomPosition()));
+				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].NextPosPlayerY(player.getRoomPosition()));
 				System.out.println(player.getRoomPosition());
 				//player.getRoomPosition()+1;
+				
 				//player.setRoomPosition(player.getRoomplayer.setRoomPosition() = Position() - 1);
 				
 				return true;
@@ -80,19 +83,26 @@ public class Movement /*extends Thread*/{
 			if(cellType == 4)
 			{
 				player.setRoomPosition(player.getRoomPosition() + 1);
+				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].getPreviousPosPlayerX(player.getRoomPosition()));
+				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].getPreviousPosPlayerY(player.getRoomPosition()));
+				//player.setRoomInsidePositionY(roomInsidePositionX);
 				System.out.println(player.getRoomPosition());
-				 
-				return false;
+				
+				return true;
 			}
 			if(cellType == 5) 
 			{
 				player.setRoomPosition(player.getRoomPosition() + 2);
+				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].getPreviousPosPlayerX(player.getRoomPosition())+1);
+				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].getPreviousPosPlayerY(player.getRoomPosition())+1);
 				// start the shop interface
 				return true;
 			}
 			if(cellType == 6) 
 			{
 				player.setRoomPosition(player.getRoomPosition() - 2);
+				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].DoubleNextPosPlayerX(player.getRoomPosition())+1);
+				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].DoubleNextPosPlayerY(player.getRoomPosition())+1);
 				System.out.println(player.getRoomPosition());
 				// start the shop interface
 				return true;

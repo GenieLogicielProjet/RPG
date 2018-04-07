@@ -14,6 +14,9 @@ abstract class Room {
 	public Cell [][]roomLayout = new Cell[16][15];
 	
 	// Random number used for the creation of rooms randomly
+	private int[] PreviousPosPlayer = new int[2];
+	private int[] NextPosPlayer = new int[2];
+	private int[] DoubleNextPosPlayer = new int[2];
 	protected Random randomNumber = new Random();
 	private int doorLocation ;
 	private int doorLocation1;
@@ -77,25 +80,24 @@ abstract class Room {
 	public int getDoorLocation() {
 		return doorLocation;
 	}
-
-
-
 	public void setDoorLocation(int doorLocation) {
 		this.doorLocation = doorLocation;
 	}
-
-
-
 	public int getDoorLocation1() {
-		return doorLocation1;
+		return doorLocation;
 	}
-
-
-
-	public void setDoorLocation1(int doorLocation1) {
-		this.doorLocation1 = doorLocation1;
+	public void setDoorLocation1(int doorLocation) {
+		this.doorLocation = doorLocation;
 	}
-
+	public int getPreviousPosPlayer(int indice) {
+		return PreviousPosPlayer[indice];
+	}
+	public int getNextPosPlayer(int indice) {
+		return NextPosPlayer[indice];
+	}
+	public int getDoubleNextPosPlayer(int indice) {
+		return DoubleNextPosPlayer[indice];
+	}
 
 
 	public void printLayout() {

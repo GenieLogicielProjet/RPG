@@ -2,6 +2,9 @@ package gameEngine;
 
 public class EndRoom extends Room {
 	private int doorLocation;
+	private int[] PreviousPosPlayer = new int[2];
+	private int[] NextPosPlayer = new int[2];
+	private int[] DoubleNextPosPlayer = new int[2];
 	
 	public EndRoom(Room lastRoom){
 	super();
@@ -12,9 +15,11 @@ public class EndRoom extends Room {
 	System.out.println("EndRoom");
 	//Escalier
 	roomLayout[12][12].type = 7;
+	NextPosPlayer[0]=12;
+	NextPosPlayer[1]=12;
 	
 	// Initialize the obstacles randomly
-	for(int j = 1; j <= numberOfObstacles; j++)
+	for(int j = 2; j <= numberOfObstacles; j++)
 	{
 		b = randomNumber.nextBoolean();
 		if(b) {
@@ -42,19 +47,28 @@ public class EndRoom extends Room {
 	}
 	doorLocation = opposed(lastRoom.getDoorLocation());
 	if(doorLocation == 0){
-		roomLayout[0][1+randomNumber.nextInt(12)].type = 3;
+		PreviousPosPlayer[0] = 0 ;
+		PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+		roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 		//System.out.println("haut");
 	}
 	else if (doorLocation == 1){
-		roomLayout[1+randomNumber.nextInt(11)][0].type = 3;
+		PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+		PreviousPosPlayer[1] = 0 ;
+		roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 		//System.out.println("gauche");
 	}
 	else if (doorLocation == 2){
-		roomLayout[15][1+randomNumber.nextInt(12)].type = 3;
+		PreviousPosPlayer[0] = 15 ;
+		PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+		roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 		//System.out.println("bas");
 	}
 	else{ 
+		PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+		PreviousPosPlayer[1] = 14 ;
 		roomLayout[1+randomNumber.nextInt(11)][14].type = 3;
+		roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 3;
 		//System.out.println("droite");
 	}
 }
@@ -81,11 +95,20 @@ private int opposed(int number){
 			return 0;
 		}
 	}
-	public int getDoorLocation() {
-		return doorLocation;
-	}
-	public void setDoorLocation(int doorLocation) {
-		this.doorLocation = doorLocation;
-	}
+public int getDoorLocation() {
+	return doorLocation;
+}
+public void setDoorLocation(int doorLocation) {
+	this.doorLocation = doorLocation;
+}
+public int getPreviousPosPlayer(int indice) {
+	return PreviousPosPlayer[indice];
+}
+public int getNextPosPlayer(int indice) {
+	return NextPosPlayer[indice];
+}
+public int getDoubleNextPosPlayer(int indice) {
+	return DoubleNextPosPlayer[indice];
+}	
 
 }

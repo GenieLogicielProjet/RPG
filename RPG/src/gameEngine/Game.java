@@ -131,7 +131,7 @@ public class Game extends Thread implements KeyListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-					if(now - lastCall >= 200000000)
+					if(now - lastCall >= 10000000)
 					{
 						// Update the player's position
 						moves[0].update();
@@ -152,7 +152,7 @@ public class Game extends Thread implements KeyListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-					if(now - lastCall >= 200000000)
+					if(now - lastCall >= 10000000)
 					{
 						// Update the player's position
 						moves[1].update();
@@ -172,7 +172,7 @@ public class Game extends Thread implements KeyListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-					if(now - lastCall >= 200000000)
+					if(now - lastCall >= 10000000)
 					{
 						// Update the player's position
 						moves[2].update();
@@ -192,7 +192,7 @@ public class Game extends Thread implements KeyListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-					if(now - lastCall >= 200000000)
+					if(now - lastCall >= 10000000)
 					{
 						// Update the player's position
 						moves[3].update();

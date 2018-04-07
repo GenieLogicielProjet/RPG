@@ -1,4 +1,4 @@
-rapackage sound;
+package sound;
 
 import java.io.*;
 import java.net.URL;

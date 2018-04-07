@@ -2,6 +2,9 @@ package gameEngine;
 
 public class AfterSHopRoom extends Room{
 	private int doorLocation;
+	private int[] PreviousPosPlayer = new int[2];
+	private int[] NextPosPlayer = new int[2];
+	private int[] DoubleNextPosPlayer = new int[2];
 	public AfterSHopRoom(Room lastRoom){
 		super();
 		boolean b;
@@ -43,50 +46,66 @@ public class AfterSHopRoom extends Room{
 		
 		
 				
-				doorLocation = opposed(lastRoom.getDoorLocation1());
-				if(doorLocation == 0){
-					roomLayout[0][1+randomNumber.nextInt(12)].type = 6;
-					//System.out.println("haut");
-				}
-				else if (doorLocation == 1){
-					roomLayout[1+randomNumber.nextInt(11)][0].type = 6;
-					//System.out.println("gauche");
-				}
-				else if (doorLocation == 2){
-					roomLayout[15][1+randomNumber.nextInt(12)].type = 6;
-					//System.out.println("bas");
-				}
-				else{ 
-					roomLayout[1+randomNumber.nextInt(11)][14].type = 6;
-					//System.out.println("droite");
-				}
+		doorLocation = opposed(lastRoom.getDoorLocation());
+		if(doorLocation == 0){
+			PreviousPosPlayer[0] = 0 ;
+			PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 6;
+			//System.out.println("haut");
+		}
+		else if (doorLocation == 1){
+			PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+			PreviousPosPlayer[1] = 0 ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 6;
+			//System.out.println("gauche");
+		}
+		else if (doorLocation == 2){
+			PreviousPosPlayer[0] = 15 ;
+			PreviousPosPlayer[1] = 1+randomNumber.nextInt(12) ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 6;
+			//System.out.println("bas");
+		}
+		else if (doorLocation == 3){ 
+			PreviousPosPlayer[0] = 1+randomNumber.nextInt(11) ;
+			PreviousPosPlayer[1] = 14 ;
+			roomLayout[PreviousPosPlayer[0]][PreviousPosPlayer[1]].type = 6;
+			//System.out.println("droite");
+		}
 				
 		
-		int tampon = doorLocation;
-		for(int i=0;i<1;i++){
-			doorLocation = randomNumber.nextInt(4);
-			if(doorLocation != tampon){
-				if(doorLocation == 0){
-					roomLayout[0][1+randomNumber.nextInt(12)].type = 4;
-					//System.out.println("---haut");
+				int tampon = doorLocation;
+				for(int i=0;i<1;i++){
+					doorLocation = randomNumber.nextInt(4);
+					if(doorLocation != tampon){
+						if(doorLocation == 0){
+							NextPosPlayer[0]=0;
+							NextPosPlayer[1]=1+randomNumber.nextInt(12);
+							roomLayout[NextPosPlayer[0]][NextPosPlayer[1]].type = 4;
+							//System.out.println("---haut");
+						}
+						else if (doorLocation == 1){
+							NextPosPlayer[0]=1+randomNumber.nextInt(11);
+							NextPosPlayer[1]=0;
+							roomLayout[NextPosPlayer[0]][NextPosPlayer[1]].type = 4;
+							//System.out.println("---gauche");
+						}
+						else if (doorLocation == 2){
+							NextPosPlayer[0]=15;
+							NextPosPlayer[1]=1+randomNumber.nextInt(12);
+							roomLayout[NextPosPlayer[0]][NextPosPlayer[1]].type = 4;
+							//System.out.println("---bas");
+						}
+						else {
+							NextPosPlayer[0]=1+randomNumber.nextInt(11);
+							NextPosPlayer[1]=14;
+							roomLayout[NextPosPlayer[0]][NextPosPlayer[1]].type = 4;
+							//System.out.println("---droite");
+						}
+					}
+					else{
+						i=i-1;
+					}
 				}
-				else if (doorLocation == 1){
-					roomLayout[1+randomNumber.nextInt(11)][0].type = 4;
-					//System.out.println("---gauche");
-				}
-				else if (doorLocation == 2){
-					roomLayout[15][1+randomNumber.nextInt(12)].type = 4;
-					//System.out.println("---bas");
-				}
-				else {
-					roomLayout[1+randomNumber.nextInt(11)][14].type = 4;
-					//System.out.println("---droite");
-				}
-			}
-			else{
-				i=i-1;
-			}
-		}
 	}
 	private int opposed(int number){
 		
@@ -116,5 +135,14 @@ public class AfterSHopRoom extends Room{
 	}
 	public void setDoorLocation(int doorLocation) {
 		this.doorLocation = doorLocation;
+	}
+	public int getPreviousPosPlayer(int indice) {
+		return PreviousPosPlayer[indice];
+	}
+	public int getNextPosPlayer(int indice) {
+		return NextPosPlayer[indice];
+	}
+	public int getDoubleNextPosPlayer(int indice) {
+		return DoubleNextPosPlayer[indice];
 	}
 }

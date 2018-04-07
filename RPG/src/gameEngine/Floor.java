@@ -45,11 +45,12 @@ public class Floor{
 				j=j-1;
 			}
 		}
-		
+		System.out.println(numberOfRooms+1);
 		// Create the Layout of a floor randomly
 		// Each floor has a shop, a room with two exits (one for the shop and one for the next Room)
 		for(int i = 0; i < numberOfRooms; i++)
 		{
+			System.out.println(i);
 			if(i==0){
 				rooms[i] = new BasicRoom();
 			}
@@ -72,7 +73,24 @@ public class Floor{
 	public int getLastRoom() {
 		return lastRoom;
 	}
-
+	public int getPreviousPosPlayerX(int indiceRoom) {
+		return rooms[indiceRoom].getPreviousPosPlayer(0);
+	}
+	public int getPreviousPosPlayerY(int indiceRoom) {
+		return rooms[indiceRoom].getPreviousPosPlayer(1);
+	}
+	public int NextPosPlayerX(int indiceRoom) {
+		return rooms[indiceRoom].getNextPosPlayer(0);
+	}
+	public int NextPosPlayerY(int indiceRoom) {
+		return rooms[indiceRoom].getNextPosPlayer(1);
+	}
+	public int DoubleNextPosPlayerX(int indiceRoom) {
+		return rooms[indiceRoom].getDoubleNextPosPlayer(0);
+	}
+	public int DoubleNextPosPlayerY(int indiceRoom) {
+		return rooms[indiceRoom].getDoubleNextPosPlayer(1);
+	}
 	public void setLastRoom(int lastRoom) {
 		this.lastRoom = lastRoom;
 	}
