@@ -1,19 +1,21 @@
 package gameEngine;
 
 import dataClasses.*;
+import utility.*;
 import java.awt.event.*;
 import java.awt.event.KeyEvent;
 import players.*;
 import gameDisplay.*;
 import javax.swing.*;
 
-public class Movement /*extends Thread*/{
+public class Movement{
 	private Map map;
 	private User player;
-	private User monster;
-	private User timer;
+	private Monster monster;
+	private TimeCounter timer;
 	
 	private boolean active;
+	private boolean shopActive = false;
 	private String name;
 	private int moveId;
 	private int xMove, yMove;
@@ -53,17 +55,17 @@ public class Movement /*extends Thread*/{
 	
 	public void update()
 	{
-		//System.out.println("a" + this.name);
 		player.setRoomInsidePositionX(player.getRoomInsidePositionX() + xMove);
-		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);
+		player.setRoomInsidePositionY(player.getRoomInsidePositionY() + yMove);	
 	}
 	
 	public boolean testMovement()
 	{
 		if(active == true)
 		{
+			Monster cellContent = new Monster(0, 0, 0, 0, 0, 0, false);
 			int cellType = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].type;
-			Object cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].content;
+			cellContent = map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[player.getRoomInsidePositionX()+xMove][player.getRoomInsidePositionY()+yMove].monster;
 			if(cellType == 0 || cellType == 1) 
 			{
 				return false;
@@ -93,9 +95,12 @@ public class Movement /*extends Thread*/{
 			if(cellType == 5) 
 			{
 				player.setRoomPosition(player.getRoomPosition() + 2);
+<<<<<<< HEAD
 				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].getPreviousPosPlayerX(player.getRoomPosition())+1);
 				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].getPreviousPosPlayerY(player.getRoomPosition())+1);
 				// start the shop interface
+=======
+>>>>>>> 810c3ea01314be173ef186169a2b406c943d8847
 				return true;
 			}
 			if(cellType == 6) 
@@ -104,7 +109,6 @@ public class Movement /*extends Thread*/{
 				player.setRoomInsidePositionX(map.floors[player.getFloorPosition()].DoubleNextPosPlayerX(player.getRoomPosition())+1);
 				player.setRoomInsidePositionY(map.floors[player.getFloorPosition()].DoubleNextPosPlayerY(player.getRoomPosition())+1);
 				System.out.println(player.getRoomPosition());
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 7) 
@@ -113,7 +117,6 @@ public class Movement /*extends Thread*/{
 					player.setRoomPosition(0);
 					player.setFloorPosition(player.getFloorPosition()+1);
 				}
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 8) 
@@ -122,24 +125,38 @@ public class Movement /*extends Thread*/{
 					player.setRoomPosition(map.getLastRoom(map.floors[player.getFloorPosition()-1])); 
 					player.setFloorPosition(player.getFloorPosition()-1);
 				}
-				// start the shop interface
 				return true;
 			}
 			if(cellType == 9) 
 			{
-				// start the shop interface
+				if(!shopActive) {
+					shopActive = true;
+					// SALUT SOLENE VOICI UN PENIS 8===========D~~
+					// start the shop interface
+					// On appelle la fonction :
+					// ShopInterface shopping = new ShopInterface(player);
+					// cette classe implements KeyListener avec specifiquement la ligne :
+					
+					/* 
+					 * @Override
+					 * public void KeyReleased(KeyEvent e){
+					 *  if(e.getKeyCode == KeyEvent.VK_ESC)
+					 * 		Quitte la fenetre je sais pas faire perso mdr fais tes recherches
+					 * 		
+					 * }
+					 * 
+					 */
+				}
 				return false;
 			}
 			if(cellType == 10) 
 			{
-				// start the shop interface
 				return false;
 			}
-			/*if(cellContent.getClass() == monster.getClass()) 
+			if(cellContent.isPresent()) 
 			{
 				return false;
-			}*/
-			// if(cellContent.getClass() == boss.getClass)
+			}
 			else
 				return true;
 		}
@@ -155,8 +172,5 @@ public class Movement /*extends Thread*/{
 	}
 	public String getName() {
 		return name;
-	}
-	public void run() {
-		
 	}
 }

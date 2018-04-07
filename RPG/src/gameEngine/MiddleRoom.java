@@ -137,6 +137,7 @@ public class MiddleRoom extends Room{
 	public void setDoorLocation(int doorLocation) {
 		this.doorLocation = doorLocation;
 	}
+<<<<<<< HEAD
 	public int getPreviousPosPlayer(int indice) {
 		return PreviousPosPlayer[indice];
 	}
@@ -147,3 +148,6 @@ public class MiddleRoom extends Room{
 		return DoubleNextPosPlayer[indice];
 	}
 }
+=======
+}
+>>>>>>> 810c3ea01314be173ef186169a2b406c943d8847

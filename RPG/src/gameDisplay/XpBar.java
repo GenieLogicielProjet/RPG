@@ -6,32 +6,29 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import players.*;
 
 public class XpBar extends JPanel{
 	private JProgressBar xp;
-	private int xpPoint;
+	private User player;
 	
-	public XpBar() {
+	public XpBar(User player) {
 		// TODO Auto-generated constructor stub
-		xp  = new JProgressBar(JProgressBar.VERTICAL);
-		xp.setMaximum(80);
+		xp = new JProgressBar(JProgressBar.VERTICAL);
+		this.player = player;
+		xp.setMaximum(player.getMaxXpPoints());
 		xp.setMinimum(0);
 		xp.setForeground(Color.MAGENTA);
 		xp.setStringPainted(true);
-		
 		xp.setSize(10,10);
-		//this.add(life);
 		xp.setStringPainted(true);
 	    this.add(xp, BorderLayout.CENTER);
 	    this.setVisible(true);
 	}
 	public void paintComponent(Graphics g){
-
-		xp.setValue(xpPoint);
+		xp.setMaximum(player.getMaxXpPoints());
+		xp.setValue(player.getCurrentXpPoints());
 		this.add(xp, BorderLayout.CENTER);
 	    this.setVisible(true);
-	}
-	public void setXpPoint(int xp){
-		xpPoint = xp;
 	}
 }

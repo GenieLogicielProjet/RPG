@@ -2,7 +2,7 @@ package dataClasses;
 
 import java.util.HashMap;
 
-public class Hero extends Characteristics{
+public class Hero{
 	private Item head;
 	private Item face;
 	private Item neck;
@@ -13,4 +13,23 @@ public class Hero extends Characteristics{
 	private Item feet;
 	private int gold, level, experience;
 	HashMap<String, Item> inventory = new HashMap<String, Item>();
+	private int posX, posY;
+	
+	public Hero(int posX, int posY) {
+		super();
+		this.posX = posX;
+		this.posY = posY;
+	}
+	public int getPosX() {
+		return posX;
+	}
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+	public int getPosY() {
+		return posY;
+	}
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
 }
