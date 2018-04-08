@@ -31,7 +31,7 @@ public class GameDisplay extends JPanel{
 	private BufferedImage []f3Sprite = new BufferedImage[7];
 	private BufferedImage []characterSprite = new BufferedImage[2];
 	private BufferedImage []otherSprite = new BufferedImage[5];
-	// private BufferedImage []animSprite = new BufferedImage[5];
+	private BufferedImage []animSprite = new BufferedImage[5];
 	
 	public GameDisplay(Map map, User player) // Security []monsters)
 	{
@@ -81,11 +81,11 @@ public class GameDisplay extends JPanel{
 			otherSprite[4] = ImageIO.read(new File("images/Sprites/Others/opened_treasure.gif"));
 			
 			// Animations
-	/*		animSprite[0] = ImageIO.read(new File("images/Sprites/animations/basicAttack.png"));
+			animSprite[0] = ImageIO.read(new File("images/Sprites/animations/basicAttack.png"));
 			animSprite[1] = ImageIO.read(new File("images/Sprites/animations/ultimateSpell.png"));
 			animSprite[2] = ImageIO.read(new File("images/Sprites/animations/mysticTeleport.png"));
 			animSprite[3] = ImageIO.read(new File("images/Sprites/animations/smartAllocation.png"));
-			animSprite[4] = ImageIO.read(new File("images/Sprites/animations/kickSlash.png")); */
+			animSprite[4] = ImageIO.read(new File("images/Sprites/animations/kickSlash.png")); 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -157,7 +157,7 @@ public class GameDisplay extends JPanel{
 					break;
 				case 1 :
 					tryDraw = g.drawImage(f2Sprite[4], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
-					tryDraw = g.drawImage(f1Sprite[spriteRequired], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
+					tryDraw = g.drawImage(f2Sprite[spriteRequired], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
 					if(sprite == 8) {
 						tryDraw = g.drawImage(otherSprite[2], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
 					}
@@ -167,7 +167,7 @@ public class GameDisplay extends JPanel{
 					break;
 				case 2 :
 					tryDraw = g.drawImage(f3Sprite[4], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
-					tryDraw = g.drawImage(f1Sprite[spriteRequired], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
+					tryDraw = g.drawImage(f3Sprite[spriteRequired], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
 					if(sprite == 8) {
 						tryDraw = g.drawImage(otherSprite[2], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
 					}
@@ -195,14 +195,15 @@ public class GameDisplay extends JPanel{
 					}
 				}
 				
-				// Draw the spell animation (if it still needs to be animated)
-				/*for(int i = 0; i <= 4; i++)
+				// Draw the spell animation (if it still needs to be drawn)
+				for(int i = 0; i <= 4; i++)
 				{
-					if(player.spells[i].getAnimation().isActive() && player.spells[i].getAnimation().isAreaOfEffect(positionX, positionX))
+					if(player.spells[i].getAnimation().isActive() && 
+							player.spells[i].getAnimation().isAreaOfEffect(player.getFloorPosition(), player.getRoomPosition(), positionX, positionY))
 					{
 						tryDraw = g.drawImage(animSprite[i], positionX*spriteSize, positionY*spriteSize, spriteSize, spriteSize, null);
 					}
-				}*/
+				}
 				
 				// Draw the monsters if they are present
 				if(cellMonster.isPresent()) {
