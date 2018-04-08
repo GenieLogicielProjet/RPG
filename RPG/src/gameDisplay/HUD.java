@@ -16,9 +16,6 @@ public class HUD extends JFrame{
 	
 	public HUD()
 	{
-		//hudPanel.setVisible(true);
-		//gameWindow = window;
-		//gameWindow.add(hudPanel);
 		this.setTitle("RPG");
 		this.setSize(1280,960);
 		this.setBackground(Color.darkGray);
@@ -42,20 +39,22 @@ public class HUD extends JFrame{
 	public void createHUD(){
 		Box left = Box.createVerticalBox();
 		left.add(Box.createVerticalStrut(25));
-		//*****************************************************
 		gameView.setBackground(Color.ORANGE);
-		gameView.setPreferredSize(new Dimension(800,700));
+		gameView.setPreferredSize(new Dimension(800,750));
+		
 		BorderLayout leLayout = new BorderLayout();
 		gameView.setLayout(leLayout);
-		//*****************************************************	
 		left.add(gameView);
 	    left.add(Box.createVerticalStrut(25));
+	    
 	    Box container1 = Box.createHorizontalBox();
+	    
 		JPanel abilitiesView = new JPanel();
 		abilitiesView.setBackground(Color.GREEN);
 		abilitiesView.setPreferredSize(new Dimension(600,120));
 		container1.add(abilitiesView);
 		container1.add(Box.createHorizontalStrut(15));
+		
 		JPanel goldView = new JPanel();
 		goldView.setBackground(Color.GRAY);
 		goldView.setPreferredSize(new Dimension(100,120));
@@ -65,18 +64,22 @@ public class HUD extends JFrame{
 
 	    Box right = Box.createVerticalBox();
 	    right.add(Box.createVerticalStrut(25));
+	    
 	    Box container = Box.createHorizontalBox();
     	xpBar.setBackground(Color.GRAY);
     	xpBar.setPreferredSize(new Dimension(10,15));
+    	
 		BorderLayout leLayout3 = new BorderLayout();
 		xpBar.setLayout(leLayout3);
 		container.add(xpBar);
 		container.add(Box.createHorizontalStrut(15));
+		
 		JPanel characterePicture = new JPanel();
 		characterePicture.setBackground(Color.BLACK);
 		characterePicture.setPreferredSize(new Dimension(120,110));
 		container.add(characterePicture);
 		container.add(Box.createHorizontalStrut(25));
+		
 		JPanel statView = new JPanel();
 		statView.setBackground(Color.GRAY);
 		statView.setPreferredSize(new Dimension(170,110));
@@ -85,21 +88,25 @@ public class HUD extends JFrame{
     	right.add(Box.createVerticalStrut(40));
     	hpBar.setBackground(Color.GREEN);
     	hpBar.setPreferredSize(new Dimension(350,25));
+    	
 		BorderLayout leLayout1 = new BorderLayout();
 		hpBar.setLayout(leLayout1);
 		right.add(hpBar);
 		right.add(Box.createVerticalStrut(25));
     	manaBar.setBackground(Color.BLUE);
     	manaBar.setPreferredSize(new Dimension(350,25));
+    	
     	BorderLayout leLayout2 = new BorderLayout();
     	manaBar.setLayout(leLayout2);
     	right.add(manaBar);
     	right.add(Box.createVerticalStrut(60));
+    	
     	JPanel miniMap = new JPanel();
     	miniMap.setBackground(Color.MAGENTA);
     	miniMap.setPreferredSize(new Dimension(350,280));
     	right.add(miniMap);
     	right.add(Box.createVerticalStrut(50));
+    	
     	JPanel inventoryView = new JPanel();
     	inventoryView.setBackground(Color.ORANGE);
     	inventoryView.setPreferredSize(new Dimension(350,250));
@@ -111,8 +118,7 @@ public class HUD extends JFrame{
 	    hiddenContainer.add(left);
 	    hiddenContainer.add(Box.createHorizontalStrut(50));
 	    hiddenContainer.add(right);
-	    hiddenContainer.add(Box.createHorizontalStrut(25));
-	    
+	    hiddenContainer.add(Box.createHorizontalStrut(25));   
 	    hiddenContainer.setOpaque(false);  
 		this.setContentPane(hiddenContainer);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
