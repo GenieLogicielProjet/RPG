@@ -8,6 +8,7 @@ import gameDisplay.*;
 import dataClasses.*;
 import players.*;
 import java.awt.event.*; 
+import java.awt.Point;
 
 public class Game extends Thread implements KeyListener, MouseListener{
 	// Both of these should only be initialized once (see : Singleton Pattern)
@@ -37,6 +38,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 	private LifeBar lifeBar;
 	private ManaBar manaBar;
 	private XpBar xpBar;
+	private long gameTimer = 0;
 	
 	private int playerSpeed = player.getSwiftness() * 10000000;
 	
@@ -59,10 +61,12 @@ public class Game extends Thread implements KeyListener, MouseListener{
 		headUpDisplay.setHpBar(lifeBar);
 		headUpDisplay.setGameView(displayer);
 		headUpDisplay.createHUD();
-		headUpDisplay.addKeyListener(this);
 		
 		// Displayer is used to draw every time it is possible
 		displayer.addMouseListener(this);
+		displayer.addKeyListener(this);
+		displayer.setFocusable(true);
+		displayer.setRequestFocusEnabled(true);
 		
 		// Define all the 4 different movement types
 		moves[0] = new Movement(map, player, "left", 0);
@@ -121,7 +125,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 			{
 				for(int k = 0; k < 15; k++)
 				{
-					map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[j][k].monster.update(elapsedTime);	
+					map.floors[player.getFloorPosition()].rooms[player.getRoomPosition()].roomLayout[j][k].monster.update(player, map, elapsedTime);	
 				}
 			}
 		}
@@ -162,11 +166,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-<<<<<<< HEAD
-					if(now - lastCall >= 10000000)
-=======
 					if(now - lastCall >= playerSpeed)
->>>>>>> 810c3ea01314be173ef186169a2b406c943d8847
 					{
 						// Update the player's position
 						moves[0].update();
@@ -187,11 +187,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-<<<<<<< HEAD
-					if(now - lastCall >= 10000000)
-=======
 					if(now - lastCall >= playerSpeed)
->>>>>>> 810c3ea01314be173ef186169a2b406c943d8847
 					{
 						// Update the player's position
 						moves[1].update();
@@ -211,11 +207,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-<<<<<<< HEAD
-					if(now - lastCall >= 10000000)
-=======
 					if(now - lastCall >= playerSpeed)
->>>>>>> 810c3ea01314be173ef186169a2b406c943d8847
 					{
 						// Update the player's position
 						moves[2].update();
@@ -235,7 +227,7 @@ public class Game extends Thread implements KeyListener, MouseListener{
 					now = System.nanoTime();
 					// Start a timer to wait 200ms before moving again
 					// in order to avoid moving too fast.
-					if(now - lastCall >= 10000000)
+					if(now - lastCall >= playerSpeed)
 					{
 						// Update the player's position
 						moves[3].update();
@@ -321,16 +313,16 @@ public class Game extends Thread implements KeyListener, MouseListener{
 		if(!aiming) {
 			if(attacks[0].testAttack())
 			{
-				int xLocation = arg0.getX() / 48;
-				int yLocation = arg0.getY() / 48;
+				int xLocation = arg0.getPoint().x / 48;
+				int yLocation = arg0.getPoint().y / 48;
 				if((Math.abs(player.getRoomInsidePositionX() - xLocation) <= 1) && (Math.abs(player.getRoomInsidePositionY() - yLocation) <= 1))
 					attacks[0].update(xLocation, yLocation);
 			}
 		}
 		else
 		{
-			int dirX = arg0.getX()/48;
-			int dirY = arg0.getY()/48;
+			int dirX = arg0.getPoint().x / 48;
+			int dirY = arg0.getPoint().y / 48;
 			int x = player.getRoomInsidePositionX() - dirX;
 			int y = player.getRoomInsidePositionY() - dirY;
 			if(currentSpellAiming == 2) {
