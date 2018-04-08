@@ -20,8 +20,7 @@ public class XpBar extends JPanel{
 		xp.setMinimum(0);
 		xp.setForeground(Color.MAGENTA);
 		xp.setStringPainted(true);
-		xp.setSize(10,10);
-		xp.setStringPainted(true);
+		xp.setSize(10, 10);
 	    this.add(xp, BorderLayout.CENTER);
 	    this.setVisible(true);
 	}

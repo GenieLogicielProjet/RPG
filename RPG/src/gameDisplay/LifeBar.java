@@ -20,8 +20,7 @@ public class LifeBar extends JPanel{
 		life.setMaximum(player.getMaxHealthPoints());
 		life.setMinimum(0);
 		life.setForeground(Color.green);
-		life.setStringPainted(true);
-		
+		life.setStringPainted(true);	
 		life.setSize(150,50);
 		life.setStringPainted(true);
 	    this.add(life, BorderLayout.CENTER);
