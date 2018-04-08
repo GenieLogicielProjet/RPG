@@ -1,4 +1,4 @@
-package dataClasses;
+	package dataClasses;
 
 import gameDisplay.Animation;
 import players.*;
@@ -9,7 +9,6 @@ public class Spell {
 	private boolean available;
 	private boolean damageOverTime;
 	private int manaCost;
-	private boolean casting;
 	private boolean unlocked;
 	private Animation animation;
 
@@ -24,23 +23,9 @@ public class Spell {
 	}
 	
 	
-	// Getters and Setters
-	
-	public boolean isCasting() {
-		return casting;
-	}
-
+	// Getters and Setters	
 	public Animation getAnimation() {
 		return animation;
-	}
-
-	public void setAnimation(Animation animation) {
-		this.animation = animation;
-	}
-
-
-	public void setCasting(boolean casting) {
-		this.casting = casting;
 	}
 
 	public int getManaCost() {
@@ -65,6 +50,12 @@ public class Spell {
 
 	public void setCurrentCooldown(long currentCooldown) {
 		this.currentCooldown = currentCooldown;
+		if(currentCooldown <= 0)
+		{
+			this.setAvailable(true);
+		}
+		else
+			this.setAvailable(false);
 	}
 
 	public boolean isAvailable() {
@@ -73,12 +64,14 @@ public class Spell {
 
 	public void setAvailable(boolean available) {
 		this.available = available;
+		if(available) {
+			currentCooldown = maxCooldown;
+		}
 	}
 
 	public boolean isDamageOverTime() {
 		return damageOverTime;
 	}
-
 	public void setDamageOverTime(boolean damageOverTime) {
 		this.damageOverTime = damageOverTime;
 	}
