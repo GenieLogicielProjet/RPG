@@ -1,4 +1,4 @@
-package test2;
+package gameDisplay;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,19 +28,8 @@ public class QuestDiary extends JFrame{
 	
 	public void createPanel() {    
 		
-
 	    //Main container
 	    JPanel content = new JPanel();
-	    
-	   /* JScrollPane scrollPane = new JScrollPane(content);
-		this.add(scrollPane, BorderLayout.CENTER);
-	    content.setPreferredSize(new Dimension(600, 600));
-	    
-	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	    scrollPane.setViewportBorder(new LineBorder(Color.RED));
-
-	    this.add(scrollPane, BorderLayout.CENTER);
-	    */
 	    
 	    //Definition of layout manager
 	    content.setLayout(new GridBagLayout());
